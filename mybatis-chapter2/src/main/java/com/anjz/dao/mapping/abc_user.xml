@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserMapper">
+	<select id="queryUser" resultType="com.anjz.model.AbcUser">  
+        select * from abc_user
+    </select>
+    
+    <select id="findUserById" resultType="com.anjz.model.AbcUser" parameterType="java.lang.Integer">  
+        select * from abc_user where id = #{id}
+    </select>
+    
+    <select id="findUserByName" resultType="com.anjz.model.AbcUser" parameterType="java.lang.String">  
+        select * from abc_user where user_name like concat('%',#{user_name},'%')
+    </select>
+    
+    <insert id="addUser">
+    	insert into abc_user(id,user_name,password) values(#{id},#{user_name},#{password})
+    </insert>
+    
+    <update id="updateUser" parameterType="com.anjz.model.AbcUser">
+    	update abc_user 
+    	set user_name = #{user_name} ,
+    	password = #{password},
+    	where id = ${id}
+    </update>
+    
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+    	delete from abc_user where id = #{id}
+    </delete>
+</mapper>
