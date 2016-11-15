@@ -3,7 +3,6 @@ package com.anjz.test;
 
 import java.util.List;
 
-import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
@@ -11,6 +10,9 @@ import org.junit.Test;
 
 import com.anjz.model.AbcUser;
 import com.anjz.utils.SqlSessionFactoryUtil;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 
 /**
  * 
@@ -37,6 +39,29 @@ public class UserTest {
 		for(AbcUser user:list){
 			System.out.println(user);
 		}
+	}
+	
+	
+	/**
+	 * 通过插件进行分页，测试
+	 */
+	@Test
+	public void queryUserPage(){
+		PageBounds pageBounds = new PageBounds(1,2);		
+		List<AbcUser> list=session.selectList("UserMapper.queryUser", null,pageBounds);
+		
+		PageList<AbcUser> pageList = (PageList<AbcUser>)list; 
+		
+		Paginator paginator =  pageList.getPaginator();
+		System.out.println("总记录数："+paginator.getTotalCount());
+		System.out.println("页数："+paginator.getPage());
+		System.out.println("分页大小："+paginator.getLimit());
+		
+		Integer[] showNumber=paginator.getSlider();
+		for(Integer number:showNumber){
+			System.out.print(number+",");
+		}
+		System.out.println();
 	}
 	
 	@Test

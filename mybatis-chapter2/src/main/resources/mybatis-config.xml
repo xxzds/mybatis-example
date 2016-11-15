@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE configuration  
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
 <configuration>  
+	<plugins>
+		<plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+			<property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+		</plugin>
+	</plugins>
+
     <!-- 对事务的管理和连接池的配置 -->  
     <environments default="development">  
         <environment id="development">  
@@ -12,12 +16,14 @@
                 <property name="url" value="jdbc:mysql://localhost:3306/test" />  
                 <property name="username" value="root" />  
                 <property name="password" value="123456" />  
-            </dataSource>  
+            </dataSource>
         </environment>  
     </environments>  
+
+	
       
     <!-- mapping 文件路径配置 -->  
     <mappers>  
         <mapper resource="com/anjz/dao/mapping/abc_user.xml" />  
-    </mappers>  
+    </mappers>
 </configuration>

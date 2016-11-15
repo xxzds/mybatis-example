@@ -1,0 +1,13 @@
+MyBatis配置文件中大标签configuration下子标签包括：
+configuration
+|--- properties
+|--- settings
+|--- typeAliases
+|--- typeHandlers
+|--- objectFactory
+|--- plugins
+|--- environments
+|--- |--- environment
+|--- |--- |--- transactionManager
+|--- |--- |__ dataSource
+|__ mappers
