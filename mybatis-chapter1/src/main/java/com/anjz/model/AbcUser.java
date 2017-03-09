@@ -35,4 +35,9 @@ public class AbcUser {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "AbcUser [id=" + id + ", userName=" + userName + ", password=" + password + "]";
+	}
 }

@@ -12,7 +12,9 @@ public interface AbcUserDao {
 	
 	public AbcUser findById(Integer id);
 	
-	public List<AbcUser> find();
+	public List<AbcUser> find(AbcUser user);
+	
+	public List<AbcUser> findTest(AbcUser user);
 	
 	public PageList<AbcUser> find(PageBounds pageBounds);
 }

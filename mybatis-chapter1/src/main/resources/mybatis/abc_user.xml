@@ -37,9 +37,18 @@
 		</where>
 	</select>
 	
-	<select id="find" resultMap="BaseResultMap" parameterType="com.anjz.model.AbcUser">
+	<select id="find" resultMap="BaseResultMap" parameterType="AbcUser">
 		select 
 		<include refid="Base_Column_List" />
+		from abc_user
+		<include refid="conditions_abcUser" />
+	</select>
+	
+	<select id="findTest" resultType="AbcUser">
+		select 
+			id,
+			user_name as userName,
+			password
 		from abc_user
 		<include refid="conditions_abcUser" />
 	</select>

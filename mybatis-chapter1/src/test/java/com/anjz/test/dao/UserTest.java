@@ -1,5 +1,7 @@
 package com.anjz.test.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -38,7 +40,13 @@ public class UserTest extends BaseTest{
 	 */
 	@Test
 	public void findTest(){
-		abcUserDao.find();
+		AbcUser user = new AbcUser();
+//		user.setUserName("nihao");
+//		abcUserDao.find(user);
+		List<AbcUser> list = abcUserDao.findTest(user);
+		for(AbcUser userx:list){
+			logger.info(userx.toString());
+		}
 	}
 	
 	/**
